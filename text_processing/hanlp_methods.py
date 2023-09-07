@@ -15,8 +15,14 @@ print(result2)
 
 # 中文命名实体识别
 # 加载中文命名实体识别预训练模型MSRA_NER_BERT_BASE_ZH
-recognizer1 = hanlp.load(hanlp.pretrained.ner.MSRA_NER_BERT_BASE_ZH)
-word_list1 = list("塞纳河畔左岸的咖啡")
-print(word_list1)
-print(recognizer1(word_list1))
-print(recognizer1("塞纳河畔左岸的咖啡"))
+recognizer = hanlp.load("MSRA_NER_BERT_BASE_ZH")
+print(recognizer(list("塞纳河畔左岸的咖啡")))
+
+
+# 中文词性标注
+tagger1 = hanlp.load('CTB5_POS_RNN_FASTTEXT_ZH')
+print(tagger1(list("孤单听雨的猫往时间裂缝里看到了我")))
+
+# 英文词性标注
+tagger2 = hanlp.load("PTB_POS_RNN_FASTTEXT_EN")
+print(tagger2("Can I go where you go".split()))
