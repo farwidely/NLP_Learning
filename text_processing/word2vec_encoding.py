@@ -1,4 +1,4 @@
-# 使用fasttext-0.9.2-cp310-cp310-win_amd64.whl
+# 使用fasttext-0.9.2-cp310-cp310-win_amd64.whl安装fasttext
 import fasttext
 
 """
