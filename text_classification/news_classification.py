@@ -20,8 +20,9 @@ train_dataloader = DataLoader(train_dataset, batch_size=batch_size)
 test_dataloader = DataLoader(test_dataset, batch_size=batch_size)
 
 VOCAB_SIZE = len(train_dataset.get_vocab())
-RMBED_DIM = 32
+EMBED_DIM = 32
 NUM_CLASS = len(train_dataset.get_label())
-model = TextSentiment(VOCAB_SIZE, RMBED_DIM, NUM_CLASS)
+model = TextSentiment(VOCAB_SIZE, EMBED_DIM, NUM_CLASS)
 model.to(device)
+
 

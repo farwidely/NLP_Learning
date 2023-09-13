@@ -31,6 +31,6 @@ for data in train_dataloader:
     print(data)
     text = data['text']
     label = data['label']
-    print(text)
-    print(label)
+    print(len(text))
+    print(len(label))
     break
