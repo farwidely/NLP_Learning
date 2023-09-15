@@ -2,3 +2,6 @@
 /enwik9/enwik9
 /enwik9/output.txt
 /trained_skipgram_model.bin
+/text_classification/dataset.npz
+data.json
+/text_classification/agnews_number_dataset.npz

@@ -1,5 +1,13 @@
-import torch
+import numpy as np
 
-# 使用torch.Tensor()创建一个空的张量
-list = [1,2,3,4,5]
-print(list[1:-1])
+# 假设A和B是你要拼接的两个矩阵
+A = np.random.rand(3, 4)
+B = np.random.rand(3, 4)
+
+print(A)
+print(B)
+
+# 使用numpy.concatenate
+C = np.concatenate((A, B), axis=1)
+print(C)
+print(np.zeros((7, 10)))
