@@ -11,6 +11,7 @@ print(test_dataset)
 
 print(train_dataset[0])
 
+# bert-base-uncased模型的词表大小为30522
 tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 
 # 把文本转换为数值,在较短的句子后补0
@@ -30,7 +31,7 @@ print(transformed_test_dataset['label'].shape)
 dataset = {'train_text': np.array(transformed_train_dataset['input_ids']),
            'train_label': np.array(transformed_train_dataset['label']),
            'test_text': np.concatenate((np.array(transformed_test_dataset['input_ids']),
-                                        np.zeros((7600, 102))), axis=1),
+                                        np.zeros((7600, 102), dtype=np.int64)), axis=1),
            'test_label': np.array(transformed_test_dataset['label'])}
 
 np.savez('agnews_number_dataset', **dataset)

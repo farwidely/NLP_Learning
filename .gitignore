@@ -5,3 +5,4 @@
 /text_classification/dataset.npz
 data.json
 /text_classification/agnews_number_dataset.npz
+/text_classification/trained_model_gpu_30.pth

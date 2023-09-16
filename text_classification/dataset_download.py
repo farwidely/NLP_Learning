@@ -17,7 +17,7 @@ print(f"训练数据集的长度为: {train_data_size}")
 print(f"测试数据集的长度为: {test_data_size}")
 
 # 定义批处理大小和工作进程数
-batch_size = 64
+batch_size = 4
 
 # 创建训练集和测试集的DataLoader
 train_dataloader = DataLoader(train_dataset, batch_size=batch_size)
@@ -31,6 +31,8 @@ for data in train_dataloader:
     print(data)
     text = data['text']
     label = data['label']
+    print(text)
+    print(label)
     print(len(text))
     print(len(label))
     break

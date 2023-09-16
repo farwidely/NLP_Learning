@@ -5,14 +5,13 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
-from text_classification.load_dataset import AG_NEWS_Dataset
+from text_classification.dataset import AG_NEWS_Dataset
 from text_classification.model import TextSentiment
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # 设置batch_size
 batch_size = 64
-
 # 导入转化为数值的文本数据集
 dataset = np.load('agnews_number_dataset.npz')
 # 初始化训练集和测试集
@@ -23,15 +22,11 @@ test_dataset = AG_NEWS_Dataset(dataset['test_text'], dataset['test_label'])
 train_dataloader = DataLoader(train_dataset, batch_size=batch_size)
 test_dataloader = DataLoader(test_dataset, batch_size=batch_size)
 
-# 获取不同的单词的数量
-VOCAB_SIZE = len(set(dataset['train_text'].flatten()).union(set(dataset['test_text'].flatten())))
 # 设置词嵌入维度
 EMBED_DIM = 32
-# 获取label的数量
-NUM_CLASS = len(set(dataset['test_label']))
 
 # 初始化模型
-model = TextSentiment(vocab_size=VOCAB_SIZE, embed_dim=EMBED_DIM)
+model = TextSentiment(embed_dim=EMBED_DIM)
 model.to(device)
 
 # 初始化损失函数
@@ -60,9 +55,10 @@ for i in range(epoch):
         text, targets = data
         text = text.to(device)
         targets = targets.to(device)
+        # print(text)
+        # print(text.shape)
         outputs = model(text)
         loss = loss_fn(outputs, targets)
-
         # 优化器优化模型
         optimizer.zero_grad()
         loss.backward()
@@ -86,17 +82,16 @@ for i in range(epoch):
             text, targets = data
             text = text.to(device)
             targets = targets.to(device)
-
+            # print(text)
+            # print(text.shape)
             outputs = model(text)
             loss = loss_fn(outputs, targets)
             total_test_loss += loss.item()
             accuracy = (outputs.argmax(1) == targets).sum()
-
             total_accuracy += accuracy
 
     print(f"整体测试集上的Loss: {total_test_loss}")
     print(f"整体测试集上的正确率: {total_accuracy / len(dataset['test_label'])}")
-
     end2 = time.time()
     print(f"本轮测试时长为{end2 - start2}秒\n")
 
