@@ -13,7 +13,7 @@ print(train_dataset[0])
 
 tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 
-# 把文本转换为数值
+# 把文本转换为数值,在较短的句子后补0
 transformed_train_dataset = tokenizer(train_dataset['text'], padding=True, truncation=True, return_tensors="pt")
 transformed_test_dataset = tokenizer(test_dataset['text'], padding=True, truncation=True, return_tensors="pt")
 transformed_train_dataset['label'] = torch.tensor(train_dataset['label'])
