@@ -35,7 +35,7 @@ class TextSentiment(nn.Module):
 
 
 if __name__ == '__main__':
-    model = TextSentiment(vocab_size=25485, embed_dim=32)
+    model = TextSentiment(embed_dim=32)
     x = torch.tensor([[0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 5, 6, 7]])
     x1 = torch.randint(0, 1000, (64, 379))
     print(x1)
