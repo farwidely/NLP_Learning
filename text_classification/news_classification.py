@@ -5,6 +5,7 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
+from rnn import RNN1
 from text_classification.dataset import AG_NEWS_Dataset
 from text_classification.model import TextSentiment
 
@@ -27,6 +28,7 @@ EMBED_DIM = 32
 
 # 初始化模型
 model = TextSentiment(embed_dim=EMBED_DIM)
+# model = RNN1(input_size=EMBED_DIM, hidden_size=64, num_layer=1)
 model.to(device)
 
 # 初始化损失函数
@@ -36,7 +38,8 @@ loss_fn.to(device)
 # 初始化优化器
 learning_rate = 1e-2
 momentum = 0.9
-optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, momentum=momentum)
+# optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, momentum=momentum)
+optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 total_train_step = 0
 total_test_step = 0

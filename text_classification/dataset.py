@@ -23,8 +23,8 @@ if __name__ == '__main__':
 
     # 导入转化为数值的文本数据集
     dataset = np.load('agnews_number_dataset.npz')
-    print(type(dataset['train_text'][0][0]))
-    print(type(dataset['test_text'][0][0]))
+    # print(type(dataset['train_text'][0][0]))
+    # print(type(dataset['test_text'][0][0]))
     print(dataset['train_text'].shape)
     print(dataset['train_label'].shape)
     print(dataset['test_text'].shape)
