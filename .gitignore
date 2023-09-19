@@ -6,3 +6,5 @@
 data.json
 /text_classification/agnews_number_dataset.npz
 /text_classification/trained_model_gpu_30.pth
+/text_classification/test_sentence_length.npy
+/text_classification/train_sentence_length.npy
