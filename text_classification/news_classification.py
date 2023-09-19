@@ -5,6 +5,8 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
+
+from lstm import LSTM1
 from rnn import RNN1
 from text_classification.dataset import AG_NEWS_Dataset
 from text_classification.model import TextSentiment
@@ -27,8 +29,9 @@ test_dataloader = DataLoader(test_dataset, batch_size=batch_size)
 EMBED_DIM = 32
 
 # 初始化模型
-model = TextSentiment(embed_dim=EMBED_DIM)
-# model = RNN1(input_size=EMBED_DIM, hidden_size=64, num_layer=1)
+# model = TextSentiment(embed_dim=EMBED_DIM)
+# model = RNN1(input_size=32, hidden_size=512)
+model = LSTM1(input_size=32, hidden_size=512)
 model.to(device)
 
 # 初始化损失函数
